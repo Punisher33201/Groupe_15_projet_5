@@ -1,17 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
 import shap
+import joblib
 import matplotlib.pyplot as plt
+from src.data_loader import load_data
 
 # Charger données
-data = pd.read_csv("dataset.csv")
+data = load_data()
 
 # Charger modèle
-model = pickle.load(open("lgbm_model.pkl","rb"))
+model = joblib.load("models/best_model_LGBMClassifier.joblib")
 
-st.sidebar.title("Navigation")
+st.sidebar.title("Pediatric Appendicitis Prediction")
 
 page = st.sidebar.radio(
     "Go to",
