@@ -50,7 +50,7 @@ Key Features :
 * **Explainability:** SHAP / LIME
 * **Interface:** Streamlit 
 
-## 🚀 Getting Started
+🚀 Getting Started
 
 ### Prerequisites
 
@@ -84,6 +84,8 @@ python main.py
 ```
 
 📊 Methodology
+
+
 Our model is trained on   the dataset : https://archive.ics.uci.edu/dataset/938/regensburg+pediatric+appendicitis
 
 
@@ -93,11 +95,15 @@ Our model is trained on   the dataset : https://archive.ics.uci.edu/dataset/938/
 👥 Contributors
 Group 15 - [École Centrale Casablanca]
 
-Mame Less FAY 
-Mariam KRISSE
-Sahar BELGHITH
-Marie Reine SOGNON
-Cham Samuel Chedrack BOTI 
+-Mame Lesse FAYE
+ 
+-Mariam KRISSE
+
+-Sahar BELGHITH
+
+-Marie-Reine SOGNON
+
+-Cham Samuel Chedrack BOTI 
 
 ### 🧠 Model Performance & Selection
 
@@ -212,9 +218,28 @@ no appendicitis       0.91      0.78      0.84        64
 
 To ensure our application is not a "black box," we utilized **SHAP (SHapley Additive exPlanations)** to interpret how our machine learning models arrive at a diagnosis. This is critical in a pediatric context where clinical trust is paramount.
 
+## 🔍 The Clinical Imperative: ##
 
+## Why Explainability Matters (SHAP Analysis) ##
+
+Scenario: The Unjustified Loan Rejection
+
+Imagine yourself as a bank customer using a complex Machine Learning model to decide whether to grant you a mortgage or not.
+
+You enter your banking details and parameters and request a loan. The model generates an automatic response: "Rejected."
+The first question that comes to your mind is "Why?"
+
+You have the right to know the reasons for the rejection.
+You approach a manager and he replies that these are the results of an algorithm, without being able to tell you the real reasons for the refusal...
+This is obviously quite frustrating.
+
+ It is when this quest for understanding the decision factors comes into play that **SHAP analysis** enters the picture.
 
 ### Key Findings from SHAP Analysis
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
 
 Our analysis reveals that the models prioritize established clinical diagnostic protocols:
 
@@ -228,16 +253,7 @@ While clinical scores are foundational, our model uses these variables to refine
 
 > **Note on Explainability:** We prioritize models that offer high transparency, ensuring that when the application flags a potential case of appendicitis, the contributing factors—such as specific symptom intensity or lab results—are clearly visible to the attending pediatrician.
 
----
 
-### Conseil d'expert :
-
-Pour rendre cette partie encore plus percutante, je vous conseille d'ajouter sous ce texte les deux images que vous m'avez montrées, avec une petite légende :
-
-* *Figure 1: SHAP summary plot for Model A (e.g., CatBoost) highlighting the strong influence of the PAS score.*
-* *Figure 2: SHAP summary plot for Model B (e.g., Random Forest) demonstrating an alternative weighting approach.*
-
-Cela montre au jury que vous avez **"ouvert la boîte noire"** et que vous comprenez pourquoi votre IA prend une décision, ce qui est le critère numéro 1 dans les applications médicales.
 ---
 
 
