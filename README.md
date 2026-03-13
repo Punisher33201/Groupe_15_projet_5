@@ -95,7 +95,7 @@ Our model is trained on   the dataset : https://archive.ics.uci.edu/dataset/938/
 👥 Contributors
 Group 15 - [École Centrale Casablanca]
 
--Mame Lesse FAYE
+-Mame Lesse FAYE (punisher33201)
  
 -Mariam KRISSE
 
@@ -103,7 +103,7 @@ Group 15 - [École Centrale Casablanca]
 
 -Marie-Reine SOGNON
 
--Cham Samuel Chedrack BOTI 
+-Cham Samuel Chedrack BOTI (LeSamCham)
 
 ### 🧠 Model Performance & Selection
 
