@@ -4,6 +4,10 @@ import numpy as np
 import shap
 import joblib
 import matplotlib.pyplot as plt
+
+import sys
+sys.path.append('.')
+
 from src.data_loader import load_data
 
 # Charger données
