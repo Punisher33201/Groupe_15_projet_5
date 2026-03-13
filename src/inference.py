@@ -29,7 +29,7 @@ class InferenceEngine:
 
         # Load models
         self.models = {
-            "SVC": joblib.load("models/best_model_SVC.joblib"),
+            # "SVC": joblib.load("models/best_model_SVC.joblib"),
             "RandomForest": joblib.load("models/best_model_RandomForestClassifier.joblib"),
             "LGBM": joblib.load("models/best_model_LGBMClassifier.joblib"),
             "CatBoost": joblib.load("models/best_model_CatBoostClassifier.joblib"),
