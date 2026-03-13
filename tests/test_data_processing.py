@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from data_processing import data_divison, data_prossess
+from src.data_processing import data_divison, data_prossess
 
 
 def test_data_prossess_fills_missing_values_and_subsets_columns():

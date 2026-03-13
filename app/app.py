@@ -1,163 +1,50 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import shap
-import joblib
 import matplotlib.pyplot as plt
 
-import sys
-sys.path.append('.')
+import sys 
+sys.path.append(".")
 
-from src.data_loader import load_data
+from src.inference import InferenceEngine
+from src.shap_analysis import get_shap_plot
 
-# Charger données
-data = load_data()
+# Initialize the engine
+engine = InferenceEngine()
 
-# Charger modèle
-model = joblib.load("models/best_model_LGBMClassifier.joblib")
+st.title("Pediatric Appendicitis Prediction App")
 
-st.sidebar.title("Pediatric Appendicitis Prediction")
+st.markdown("""
+This app predicts the probability of pediatric appendicitis based on clinical features using trained machine learning models.
+Select a model and input the feature values to get a prediction along with SHAP explainability.
+""")
 
-page = st.sidebar.radio(
-    "Go to",
-    ["Dataset Overview","Model Info","Patient Prediction","Model Explanation"]
-)
+# User inputs
+st.header("Input Features")
+user_input = {}
+for col in engine.cols_used:
+    min_val = float(engine.X_train[col].min())
+    max_val = float(engine.X_train[col].max())
+    mean_val = float(engine.X_train[col].mean())
+    user_input[col] = st.slider(col, min_val, max_val, mean_val, step=0.1)
 
-# -------------------------
-# PAGE 1 DATASET
-# -------------------------
+# Model selection
+model_name = st.selectbox("Select Model", list(engine.models.keys()))
 
-if page == "Dataset Overview":
-
-    st.title("Pediatric Appendicitis Dataset")
-
-    st.write("Dataset preview")
-    st.dataframe(data.head())
-
-    st.subheader("Dataset statistics")
-    st.write(data.describe())
-
-    st.subheader("Correlation matrix")
-
-    fig, ax = plt.subplots()
-
-    corr = data.corr()
-
-    cax = ax.matshow(corr)
-
-    fig.colorbar(cax)
-
-    st.pyplot(fig)
-
-
-# -------------------------
-# PAGE 2 MODEL
-# -------------------------
-
-elif page == "Model Info":
-
-    st.title("Machine Learning Model")
-
-    st.write("Model used: LightGBM")
-
-    st.write("""
-    LightGBM is a gradient boosting algorithm optimized for
-    performance and efficiency in tabular datasets.
-    """)
-
-    st.subheader("Features used")
-
-    features = [
-        "Body temperature",
-        "Pediatric appendicitis score",
-        "Length of stay",
-        "Alvarado score",
-        "Appendix diameter",
-        "WBC count",
-        "Neutrophil %",
-        "Segmented neutrophil"
-    ]
-
-    st.write(features)
-
-# -------------------------
-# PAGE 3 PREDICTION
-# -------------------------
-
-elif page == "Patient Prediction":
-
-    st.title("Appendicitis Prediction")
-
-    body_temp = st.number_input("Body Temperature")
-
-    pas_score = st.number_input("Pediatric Appendicitis Score")
-
-    length_stay = st.number_input("Length of Stay")
-
-    alvarado = st.number_input("Alvarado Score")
-
-    appendix_diameter = st.number_input("Appendix Diameter")
-
-    wbc = st.number_input("WBC Count")
-
-    neutrophil_percent = st.number_input("Neutrophil %")
-
-    segmented_neutrophil = st.number_input("Segmented Neutrophil")
-
-    features = np.array([[
-        body_temp,
-        pas_score,
-        length_stay,
-        alvarado,
-        appendix_diameter,
-        wbc,
-        neutrophil_percent,
-        segmented_neutrophil
-    ]])
-
-    if st.button("Predict"):
-
-        prediction = model.predict(features)
-
-        proba = model.predict_proba(features)
-
-        if prediction[0] == 1:
-
-            st.error("High probability of appendicitis")
-
-        else:
-
-            st.success("Low probability of appendicitis")
-
-        st.write("Probability:",proba[0][1])
-
-# -------------------------
-# PAGE 4 SHAP
-# -------------------------
-
-elif page == "Model Explanation":
-
-    st.title("Model Explanation with SHAP")
-
-    sample = data.iloc[:50]
-
-    X = sample[[
-        "Body temperature",
-        "Pediatric appendicitis score",
-        "Length of stay",
-        "Alvarado score",
-        "Appendix diameter",
-        "WBC count",
-        "Neutrophil %",
-        "Segmented neutrophil"
-    ]]
-
-    explainer = shap.TreeExplainer(model)
-
-    shap_values = explainer.shap_values(X)
-
-    fig = plt.figure()
-
-    shap.summary_plot(shap_values,X,show=False)
-
-    st.pyplot(fig)
+if st.button("Predict"):
+    pred_proba = engine.predict(user_input, model_name)
+    st.subheader("Prediction")
+    st.write(f"Probability of Appendicitis: {pred_proba:.3f}")
+    if pred_proba > 0.5:
+        st.write("**Prediction: Appendicitis**")
+    else:
+        st.write("**Prediction: No Appendicitis**")
+    
+    # SHAP Explainability
+    st.subheader("SHAP Explanation")
+    input_df = pd.DataFrame([user_input])
+    fig = get_shap_plot(input_df, engine.models[model_name], engine.scaler, engine.X_train, model_name)
+    if fig:
+        st.pyplot(fig)
+    else:
+        st.write("SHAP explanation not available for this model.")

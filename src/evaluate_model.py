@@ -11,14 +11,9 @@ from sklearn.preprocessing import RobustScaler
 from sklearn.metrics import roc_curve, roc_auc_score
 from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
-from catboost import CatBoostClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from data_loader import load_data
-from train_model import svm_model, randomforest, lgbm, catboost
-from data_processing import X_train_scaled, X_test_scaled, y_train, y_test
+from src.train_model import svm_model, randomforest, lgbm, catboost
+from src.data_processing import X_train_scaled, X_test_scaled, y_train, y_test
 
 
 

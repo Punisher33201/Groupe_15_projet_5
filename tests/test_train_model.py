@@ -2,7 +2,7 @@ import joblib
 
 from sklearn.svm import SVC
 
-import train_model
+import src.train_model as train_model
 
 
 class DummyGridSearchCV:

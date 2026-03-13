@@ -9,9 +9,12 @@ from lightgbm import LGBMClassifier
 from catboost import CatBoostClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-from config import param_grid_svm, param_grid_rf, param_grid_lgb, param_grid_cat
-from data_loader import load_data
-from data_processing import data_prossess, data_divison
+import sys
+sys.path.append(str(Path(__file__).parent))
+
+from src.config import param_grid_svm, param_grid_rf, param_grid_lgb, param_grid_cat
+from src.data_loader import load_data
+from src.data_processing import data_prossess, data_divison
 
 warnings.filterwarnings("ignore")
 

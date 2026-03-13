@@ -29,3 +29,8 @@ dependencies = [
     "tsfresh>=0.21.1",
     "ucimlrepo>=0.0.7",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]

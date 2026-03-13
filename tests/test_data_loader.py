@@ -1,7 +1,7 @@
 import pandas as pd
 from types import SimpleNamespace
 
-import data_loader
+import src.data_loader as data_loader
 
 
 def test_load_data_returns_dataframes(monkeypatch):

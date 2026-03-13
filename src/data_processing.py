@@ -10,14 +10,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 from sklearn.metrics import roc_curve, roc_auc_score
-from sklearn.svm import SVC
-from lightgbm import LGBMClassifier
-from catboost import CatBoostClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
-from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from data_loader import load_data
+from sklearn.metrics import classification_report, confusion_matrix
+
 def model_score(model, X_train_scaled,X_test_scaled, y_train, y_test, title):
     model.fit(X_train_scaled, y_train) # training the model 
 
