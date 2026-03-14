@@ -1,8 +1,19 @@
-# Groupe_15_projet_5
- Hello welcome, hope you have a good day 
+# Groupe 15 — Project 5
+Hello and welcome! 👋  
+We hope you have a great day.
 
- here the **Debugging squad**'s
- Project of the Coding week
+This repository contains the **Coding Week Project** developed by the **Debugging Squad**.
+
+## Project Overview
+The goal of this project is to build a **Medical Decision Support Application** for the diagnosis of **pediatric appendicitis** using machine learning techniques.
+
+The system analyzes symptoms and clinical data to help pediatricians make more accurate diagnostic decisions. The project also focuses on **model explainability** using SHAP.
+
+## Team
+Debugging Squad
+
+## Coding Week
+March 09 – March 15, 2026
 
 ## Repository Structure
 
