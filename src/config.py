@@ -1,6 +1,6 @@
 param_grid_svm = {
-    'model__C': [0.1, 1, 10, 100],
-    'model__gamma': [0.1, 0.01, 0.001, 0.0001, 'scale'],
+    'model__C': [1, 10, 100],
+    'model__gamma': [0.1, 0.01, 0.001],
     'model__kernel': ['rbf']
 }
 
