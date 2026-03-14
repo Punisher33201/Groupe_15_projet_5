@@ -109,7 +109,7 @@ if not predict_button:
     st.info("Adjust the inputs in the sidebar and click **Predict** to see the results.")
 else:
     pred_proba = engine.predict(user_input, model_name)
-    is_appendicitis = pred_proba > 0.5
+    is_appendicitis = pred_proba > 0.4
 
     col1, col2, col3 = st.columns([2, 1, 2])
 
