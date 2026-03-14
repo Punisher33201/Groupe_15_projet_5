@@ -109,7 +109,7 @@ if not predict_button:
     st.info("Adjust the inputs in the sidebar and click **Predict** to see the results.")
 else:
     pred_proba = engine.predict(user_input, model_name)
-    is_appendicitis = pred_proba > 0.4
+    is_appendicitis = pred_proba > 0.3
 
     col1, col2, col3 = st.columns([2, 1, 2])
 
@@ -118,7 +118,7 @@ else:
         st.metric(
             label="Probability of Appendicitis",
             value=f"{pred_proba:.1%}",
-            delta="High" if pred_proba > 0.75 else "Medium" if pred_proba > 0.5 else "Low",
+            delta="High" if pred_proba > 0.75 else "Medium" if pred_proba > 0.3 else "Low",
         )
         st.markdown(
             "<span style='font-size:1.1rem'>" + (
