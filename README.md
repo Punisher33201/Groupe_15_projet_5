@@ -28,8 +28,11 @@
 │ └──pytest.py
 ├──.gitattributes
 ├──.gitignore
+├──pyproject.toml
 ├──README.md
-└──requirements.txt
+├──requirements.txt
+└──uv.lock
+
 
 ## 🩺 Clinical Decision-Support for Pediatric Appendicitis
 Groupe_15_Projet_5
