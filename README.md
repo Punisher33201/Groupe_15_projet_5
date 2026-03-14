@@ -33,6 +33,22 @@
 ├──requirements.txt
 └──uv.lock
 
+## Work Methodology
+
+To ensure an efficient organization of the project, our team adopted a structured and collaborative workflow. The project was divided into four main components:
+
+- **Data Processing**
+- **Model Training**
+- **SHAP Analysis**
+- **Interface Development**
+
+For each component, one team member was assigned as the main responsible for the task, supported by one or two assistants. This distribution allowed us to manage the workload effectively while maintaining clear responsibilities within the team.
+
+Despite this task division, we emphasized **team collaboration and collective learning** throughout the project. We regularly worked together to discuss the objectives, understand the different steps of the workflow, and solve technical challenges as a group.
+
+This collaborative approach was particularly important during the **data analysis phase**, which was a new area for most of our team members. By sharing knowledge, asking questions, and exploring the dataset together, we were able to better understand the concepts involved and significantly improve our skills in data analysis and machine learning.
+
+Overall, this project was not only an opportunity to develop a technical solution but also a valuable experience in **teamwork, knowledge sharing, and collaborative problem-solving**.
 
 ## 🩺 Clinical Decision-Support for Pediatric Appendicitis
 Groupe_15_Projet_5
@@ -100,11 +116,11 @@ Group 15 - [École Centrale Casablanca]
 
 -Mame Lesse FAYE (punisher33201)
  
--Mariam KRISSE
+-Mariam KRISSE (mmmkkk26)
 
 -Sahar BELGHITH
 
--Marie-Reine SOGNON
+-Marie-Reine SOGNON (sognonmariereine1960)
 
 -Cham Samuel Chedrack BOTI (LeSamCham)
 
