@@ -160,12 +160,18 @@ Given the medical context, clinically significant outliers (e.g., extreme CRP
 or WBC values) were preserved and handled using **RobustScaler** during
 normalization, rather than being removed.
 
-### Memory Optimization
-A custom `optimize_memory(df)` function was implemented in `data_processing.py`
-to reduce memory usage by converting data types (e.g., float64 → float32,
-int64 → int32).
-
 ---
+### Correlation
+A Pearson correlation analysis was performed between all numerical features.
+No pair of features showed extreme multicollinearity. Features with |r| ≥ 0.3 
+with the target variable were considered relevant predictors:
+- **Length_of_Stay (0.66)** → strong correlation with target
+- **CRP (0.55)** → moderate-strong correlation with target
+- **WBC_Count (0.37)** → moderate correlation with target
+- **Alvarado_Score (0.30)** → moderate correlation with target
+
+No features were removed, as tree-based models (Random Forest, CatBoost) 
+are robust to correlated features.
 
 ## 📊 Dataset Analysis & Class Balance
 
@@ -186,6 +192,8 @@ particularly for the appendicitis class where missing a true case carries the
 highest clinical risk.
 **Conclusion:** Stratified splitting and cross-validation effectively compensated 
 for the imbalance, resulting in high and balanced Recall scores across both classes.
+No resampling techniques (such as SMOTE or undersampling) were applied, 
+as stratified strategies proved sufficient to handle the mild imbalance.
 
 ### 🧠 Model Performance & Selection
 
