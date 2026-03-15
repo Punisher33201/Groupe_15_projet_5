@@ -35,8 +35,13 @@ March 09 – March 15, 2026
 │ ├── data_processing.py
 │ ├── evaluate_model.py
 │ └── train_model.py
-├── tests/ # Tests unitaires 
-│ └──pytest.py
+├── tests/
+│ ├── conftest.py
+│ ├── test_data_loader.py
+│ ├── test_data_processing.py
+│ ├── test_inference.py
+│ ├── test_shap_analysis.py
+│ └── test_train_model.py
 ├──.gitattributes
 ├──.gitignore
 ├──pyproject.toml
