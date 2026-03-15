@@ -152,6 +152,8 @@ These choices ensured that the models were evaluated fairly across both classes.
 The impact is reflected in the consistently high Recall scores for both classes, 
 particularly for the appendicitis class where missing a true case carries the 
 highest clinical risk.
+**Conclusion:** Stratified splitting and cross-validation effectively compensated 
+for the imbalance, resulting in high and balanced Recall scores across both classes.
 
 ### 🧠 Model Performance & Selection
 
@@ -259,6 +261,9 @@ no appendicitis       0.91      0.78      0.84        64
 ![alt text](image-3.png)
 
 *Note: The primary objective is to maximize Sensitivity to ensure no acute appendicitis cases are overlooked by the system.*
+**➡️ Selected Model: Random Forest** — chosen for its highest AUC (0.9899) combined 
+with strong Recall (0.97) on the appendicitis class, making it the most reliable 
+model for clinical decision support.
 
 ## **SHAP Explainability**
 
@@ -294,6 +299,8 @@ Our analysis reveals that the models prioritize established clinical diagnostic 
 * **Dominance of Clinical Scores:** The **Paediatric Appendicitis Score (PAS)** and the **Alvarado Score** are the primary drivers of model output. This validates that our machine learning approach aligns with, and reinforces, standard medical diagnostic workflows.
 * **Feature Redundancy:** Biological markers (such as `WBC_Count` and `Appendix_Diameter`) show lower individual SHAP values. This suggests that the information provided by these variables is often already captured within the aggregate clinical scores.
 * **Model Divergence:** Our comparative analysis between different model architectures (CatBoost, LGBM, RF, SVC) highlights how different algorithms weigh these scores. For example, some models favor the PAS score while others prioritize the Alvarado score, illustrating the importance of choosing a model that minimizes bias toward a specific clinical tool.
+**➡️ Top influential features:** Paediatric_Appendicitis_Score, Alvarado_Score, 
+WBC_Count, and Appendix_Diameter were the strongest predictors identified by SHAP.
 
 ### Clinical Interpretation
 
@@ -301,7 +308,11 @@ While clinical scores are foundational, our model uses these variables to refine
 
 > **Note on Explainability:** We prioritize models that offer high transparency, ensuring that when the application flags a potential case of appendicitis, the contributing factors—such as specific symptom intensity or lab results—are clearly visible to the attending pediatrician.
 
-
+## 🧠 Prompt Engineering
+Prompt engineering was applied during the **data processing phase** using DeepSeek. 
+Structured prompts with explicit context led to domain-relevant recommendations 
+(median imputation, RobustScaler). See [PROMPT_ENGINEERING.md](./PROMPT_ENGINEERING.md) 
+for full documentation.
 ---
 
 
