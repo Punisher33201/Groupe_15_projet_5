@@ -135,6 +135,24 @@ Group 15 - [École Centrale Casablanca]
 
 -Cham Samuel Chedrack BOTI (LeSamCham)
 
+## 📊 Dataset Analysis & Class Balance
+
+The dataset presents a **mild class imbalance**, with approximately 60% appendicitis 
+cases and 40% non-appendicitis cases.
+
+Rather than applying resampling techniques, we addressed this imbalance 
+through two strategies:
+
+- **Stratified splitting:** `train_test_split` with `stratify=y` ensures that both 
+  train and test sets preserve the original class distribution.
+- **Stratified cross-validation:** `StratifiedKFold(n_splits=5)` was used during 
+  hyperparameter tuning to maintain class proportions across all folds.
+
+These choices ensured that the models were evaluated fairly across both classes. 
+The impact is reflected in the consistently high Recall scores for both classes, 
+particularly for the appendicitis class where missing a true case carries the 
+highest clinical risk.
+
 ### 🧠 Model Performance & Selection
 
 To ensure the highest diagnostic accuracy, we evaluated multiple machine learning architectures. We prioritize **Sensitivity (Recall)**, as missing an appendicitis diagnosis in a pediatric patient carries a higher clinical risk than a false positive.
