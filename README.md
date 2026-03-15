@@ -107,9 +107,20 @@ cd Groupe_15_projet_5
 ```
 
 
-3. Run the application:
+3. Train the model:
 ```bash
-python main.py
+python src/train_model.py
+```
+
+4. Run the application:
+```bash
+streamlit run app/app.py
+```
+
+5. Run the tests:
+```bash
+pytest tests/
+```
 
 ```
 
@@ -134,6 +145,27 @@ Group 15 - [École Centrale Casablanca]
 -Marie-Reine SOGNON (sognonmariereine1960)
 
 -Cham Samuel Chedrack BOTI (LeSamCham)
+
+---
+## 🔧 Data Preprocessing
+
+### Missing Values
+The dataset contains missing values in several numerical columns.
+We handled them by imputing with the **median**, which is robust to
+the right-skewed distributions and clinical outliers present in the data.
+
+### Outliers
+Outliers were detected using the **IQR method** (Q1 - 1.5×IQR, Q3 + 1.5×IQR).
+Given the medical context, clinically significant outliers (e.g., extreme CRP
+or WBC values) were preserved and handled using **RobustScaler** during
+normalization, rather than being removed.
+
+### Memory Optimization
+A custom `optimize_memory(df)` function was implemented in `data_processing.py`
+to reduce memory usage by converting data types (e.g., float64 → float32,
+int64 → int32).
+
+---
 
 ## 📊 Dataset Analysis & Class Balance
 
@@ -261,6 +293,7 @@ no appendicitis       0.91      0.78      0.84        64
 ![alt text](image-3.png)
 
 *Note: The primary objective is to maximize Sensitivity to ensure no acute appendicitis cases are overlooked by the system.*
+
 **➡️ Selected Model: Random Forest** — chosen for its highest AUC (0.9899) combined 
 with strong Recall (0.97) on the appendicitis class, making it the most reliable 
 model for clinical decision support.
@@ -316,7 +349,30 @@ for full documentation.
 ---
 
 
+---
 
+## 📝 Conclusion
+
+This project successfully delivered a **clinical decision-support application** 
+for pediatric appendicitis diagnosis, combining robust machine learning with 
+full explainability through SHAP analysis.
+
+Key takeaways:
+- **Random Forest** emerged as the best model with 95.5% accuracy and AUC of 0.9899.
+- **SHAP analysis** confirmed that clinical scores (PAS, Alvarado) are the most 
+  influential predictors, aligning with established medical practice.
+- **Prompt engineering** with DeepSeek accelerated the data processing phase 
+  by producing domain-relevant, accurate code from the first attempt.
+- The application provides pediatricians with **transparent, interpretable predictions**, 
+  supporting informed clinical decision-making.
+Beyond the technical results, this project was a valuable learning experience 
+for the entire team. We significantly improved our skills in:
+- **GitHub** — version control, branching, CI/CD with GitHub Actions
+- **Data Analysis** — EDA, outlier detection, missing value handling, correlation analysis
+- **Machine Learning** — model training, performance evaluation
+
+> This project was developed as part of Coding Week — March 09–15, 2026  
+> École Centrale Casablanca — Group 15 — Debugging Squad
 
 
 
