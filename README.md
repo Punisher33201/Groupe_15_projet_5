@@ -121,7 +121,15 @@ streamlit run app/app.py
 ```bash
 pytest tests/
 ```
+### Automated Tests
+The test suite covers:
+- **Data loading** verification (`test_data_loader.py`)
+- **Data processing** pipeline validation (`test_data_processing.py`)
+- **Model training** verification (`test_train_model.py`)
+- **SHAP analysis** integration testing (`test_shap_analysis.py`)
+- **Inference** pipeline validation (`test_inference.py`)
 
+Tests are automatically executed via **GitHub Actions** on every push.
 ```
 
 📊 Methodology
